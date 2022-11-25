@@ -126,7 +126,7 @@ export default function Navbar({ logeado }) {
                 <div className="ml-4 flex lg:ml-0">
                   <a href="/">
                     <span className="sr-only">Your Company</span>
-                    <img className="h-8 w-auto" src="./logo.png" alt="" />
+                    <img className="h-8 w-auto" src="../logo.png" alt="" />
                   </a>
                 </div>
 
@@ -169,14 +169,14 @@ export default function Navbar({ logeado }) {
                       Crear cuenta
                     </a>
                     <a
-                      href="/cuenta"
+                      href="/cuenta/perfil"
                       className="text-sm font-medium text-gray-700 hover:text-gray-800 "
                     >
                       Mi cuenta
                     </a>
                   </div>
 
-                  <div className="hidden lg:ml-8 lg:flex">
+                  {/* <div className="hidden lg:ml-8 lg:flex">
                     <a
                       href="#"
                       className="flex items-center text-gray-700 hover:text-gray-800"
@@ -184,9 +184,8 @@ export default function Navbar({ logeado }) {
                       <span className="ml-3 block text-sm font-medium">
                         MEX
                       </span>
-                      <span className="sr-only">, change currency</span>
                     </a>
-                  </div>
+                  </div> */}
 
                   <div className="flex lg:ml-6">
                     <a

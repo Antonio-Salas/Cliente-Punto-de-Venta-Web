@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Perfil from "./Perfil";
+import { Outlet, Link } from "react-router-dom";
 
 export default function CuentaUsuario() {
   return (
@@ -8,18 +7,16 @@ export default function CuentaUsuario() {
         <div>
           <ul className="flex">
             <li className="mr-5 hover:font-bold hover:text-indigo-900">
-              <a href="/cuenta/perfil">Perfil</a>
+              <Link to="perfil">Perfil</Link>
             </li>
             <li className="mr-5 hover:font-bold hover:text-indigo-900">
-              <a href="#">Dirección</a>
-            </li>
-            <li className="mr-5 hover:font-bold hover:text-indigo-900">
-              <a href="#">Formas de pago</a>
+              <Link to="direccion">Dirección</Link>
             </li>
           </ul>
         </div>
       </div>
 
+      <Outlet />
     </div>
   );
 }
