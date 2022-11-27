@@ -1,7 +1,6 @@
+import React from "react";
 
-
-
-export default function IniciarSesion() {
+export default function IniciarSesion({ onSubmit, inputChange, datos }) {
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -24,6 +23,8 @@ export default function IniciarSesion() {
                   Correo electrónico
                 </label>
                 <input
+                  value={datos.email}
+                  onChange={inputChange}
                   id="email-address"
                   name="email"
                   type="email"
@@ -38,6 +39,8 @@ export default function IniciarSesion() {
                   Contraseña
                 </label>
                 <input
+                  value={datos.password}
+                  onChange={inputChange}
                   id="password"
                   name="password"
                   type="password"
@@ -63,7 +66,10 @@ export default function IniciarSesion() {
               </div> */}
 
               <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a
+                  href="#"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                >
                   ¿Olvidaste tu contraseña?
                 </a>
               </div>
@@ -71,6 +77,8 @@ export default function IniciarSesion() {
 
             <div>
               <button
+                onClick={onSubmit}
+                // href="/"
                 type="submit"
                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
@@ -84,5 +92,5 @@ export default function IniciarSesion() {
         </div>
       </div>
     </>
-  )
+  );
 }
