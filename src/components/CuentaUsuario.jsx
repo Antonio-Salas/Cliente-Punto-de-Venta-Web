@@ -12,6 +12,9 @@ export default function CuentaUsuario() {
             <li className="mr-5 hover:font-bold hover:text-indigo-900">
               <Link to="direccion">Dirección</Link>
             </li>
+            <li className="mr-5 hover:font-bold hover:text-indigo-900">
+              <Link to="productos">Productos</Link>
+            </li>
           </ul>
         </div>
       </div>

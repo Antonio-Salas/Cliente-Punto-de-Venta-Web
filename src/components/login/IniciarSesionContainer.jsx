@@ -14,6 +14,7 @@ export default function IniciarSesionContainer() {
 
   const onSubmit = () => {
     localStorage.setItem("auth", '"yes"');
+    localStorage.setItem("ad", '"yes"')
     navigate("");
   };
   return (
