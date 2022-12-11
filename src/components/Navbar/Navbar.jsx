@@ -130,12 +130,12 @@ export default function Navbar({ auth, onSubmit }) {
 
                 <div className="hidden lg:ml-8 lg:block lg:self-stretch">
                   <div className="flex h-full space-x-8">
-                    <a
+                    {/* <a
                       href="#"
                       className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
                       Ofertas
-                    </a>
+                    </a> */}
 
                     <a
                       href="/nuevosProductos"

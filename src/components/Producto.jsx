@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+// import { Location } from "react-router-dom";
 // const param = useParams();
 //   console.log(param);
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { RadioGroup } from "@headlessui/react";
 
 const product = {
@@ -52,9 +53,20 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Producto() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+  const [producto, setProducto] = useState([]);
+
+  let { pathname } = location;
+
+  useEffect(() => {
+    async function getProducto() {
+      const { data } = await axios.get(`http://localhost:3000/api${pathname}`);
+      setProducto(data);
+    }
+    getProducto();
+  }, []);
 
   return (
     <div className="bg-white">
@@ -63,7 +75,7 @@ export default function Example() {
         <div className="mx-auto max-w-2xl px-4 pt-0 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-              {product.name}
+              {producto.nombre}
             </h1>
             <img
               src={product.images[1].src}
@@ -76,7 +88,7 @@ export default function Example() {
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
             <p className="text-3xl tracking-tight text-gray-900">
-              {product.price}
+              ${producto.precio_venta}
             </p>
 
             <form className="mt-10">
@@ -215,7 +227,7 @@ export default function Example() {
               <h3 className="sr-only">Description</h3>
 
               <div className="space-y-6">
-                <p className="text-base text-gray-900">{product.description}</p>
+                <p className="text-base text-gray-900">{producto.descripcion}</p>
               </div>
             </div>
           </div>

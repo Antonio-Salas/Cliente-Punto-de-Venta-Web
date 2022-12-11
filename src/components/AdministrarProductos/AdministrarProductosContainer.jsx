@@ -8,12 +8,12 @@ export default function AdministrarProductosContainer() {
     const [productos, setProductos] = useState([])
     let urlProductos = `http://localhost:3000/api/productos`;
     useEffect(() => {
-        async function users() {
+        async function getProductos() {
           const {data} = await axios.get(urlProductos);
-        //   console.log(data);
+          // console.log(data);
           setProductos(data);
         }
-        users();
+        getProductos();
       }, [productos]);
 
       const eliminarProducto = (id) => {

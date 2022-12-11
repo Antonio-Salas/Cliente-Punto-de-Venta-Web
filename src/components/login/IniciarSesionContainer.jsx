@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import IniciarSesion from "./IniciarSesion";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+import IniciarSesion from "./IniciarSesion";
 
 export default function IniciarSesionContainer() {
   const [datos, setDatos] = useState({ email: "", password: "" });
@@ -17,6 +19,27 @@ export default function IniciarSesionContainer() {
     localStorage.setItem("ad", '"yes"')
     navigate("");
   };
+
+  let url = "http://localhost:3000/api/login";
+
+  // useEffect(() => {
+  //   async function users() {
+  //     const {data} = await axios.post(url,{
+  //       "email": datos.email,
+  //       "password": datos.password,
+  //     });
+  //     console.log(data);
+  //   }
+  //   users();
+  // }, []);
+
+  const login = async () => {
+    const {data} = await axios.post(`${url}`,{
+      "email": datos.email,
+      "password": datos.password,
+    });
+    console.log(data);
+  }
   return (
     <IniciarSesion
       onSubmit={onSubmit}

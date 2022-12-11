@@ -1,7 +1,7 @@
 import "./index.css";
-import StorefrontPage from "./components/Storefront-page";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Registrarse from "./components/Registrarse";
+
+import StorefrontPage from "./components/Storefront-page";
 import CuentaUsuario from "./components/CuentaUsuario";
 import Perfil from "./components/Perfil";
 import Direccion from "./components/Direccion";
@@ -12,6 +12,7 @@ import IniciarSesionContainer from "./components/login/IniciarSesionContainer";
 import AdministrarProductosContainer from "./components/AdministrarProductos/AdministrarProductosContainer";
 import ProductosContainer from "./Productos/ProductosContainer";
 import Error404 from "./pages/Error404";
+import RegistrarseContainer from "./components/RegistrarseContainer";
 
 function App() {
   
@@ -24,7 +25,7 @@ function App() {
           <Route path="*" element={<Error404 />} />
           <Route path="/" element={<StorefrontPage />} />
           <Route path="/iniciarSesion" element={<IniciarSesionContainer />} />
-          <Route path="/registrarse" element={<Registrarse />} />
+          <Route path="/registrarse" element={<RegistrarseContainer />} />
           <Route path="/cuenta/" element={<CuentaUsuario />}>
             <Route path={`perfil`} element={<Perfil />} />
             <Route path={`direccion`} element={<Direccion />} />

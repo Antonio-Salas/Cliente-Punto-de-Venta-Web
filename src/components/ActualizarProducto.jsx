@@ -1,8 +1,8 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
 
-export default function AgregarProducto({ open, setOpen }) {
+export default function ActualizarProducto({ open, setOpen, idProducto }) {
   const cancelButtonRef = useRef(null);
   const [datosProducto, setDatosProducto] = useState({
     codigo: "",
@@ -11,33 +11,54 @@ export default function AgregarProducto({ open, setOpen }) {
     stock: 0,
     descripcion: "",
   });
-  let urlProductos = "http://localhost:3000/api/productos";
-  const subirProducto = () => {
-    
-    axios.post(`${urlProductos}`,{
-      "idcategoria": 1,
-      "codigo": `${datosProducto.codigo}`,
-      "nombre": `${datosProducto.nombre}`,
-      "precio_venta": datosProducto.precio_venta,
-      "stock": datosProducto.stock,
-      "descripcion": `${datosProducto.descripcion}`
-    })
+  let urlProductoGet = "http://localhost:3000/api/producto";
+  let urlProductoPatch = "http://localhost:3000/api/productos";
+  let urlProductoG = `${urlProductoGet}/${idProducto}`
+  let urlProductoP = `${urlProductoPatch}/${idProducto}`
 
+  useEffect(() => {
+    async function getProducto() {
+      
+      const { data } = await axios.get(urlProductoG)
+      setDatosProducto({
+        codigo: data.codigo,
+        nombre: data.nombre,
+        precio_venta: data.precio_venta,
+        stock: data.stock,
+        descripcion: data.descripcion,
+      });
+    }
+    getProducto()
+  }, [idProducto])
+  
+  const actualizarProducto = () => {
+    
+    axios.patch(`${urlProductoP}`, {
+      idcategoria: 1,
+      codigo: `${datosProducto.codigo}`,
+      nombre: `${datosProducto.nombre}`,
+      precio_venta: datosProducto.precio_venta,
+      stock: datosProducto.stock,
+      descripcion: `${datosProducto.descripcion}`,
+    });
+
+    
     setDatosProducto({
       codigo: "",
       nombre: "",
       precio_venta: 0,
       stock: 0,
       descripcion: "",
-    })
-    setOpen(false)
-    
+    });
+    setOpen(false);
   };
 
   const inputChange = ({ target }) => {
     const { name, value } = target;
     setDatosProducto({ ...datosProducto, [name]: value });
   };
+
+  // console.log(idProducto);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -82,7 +103,7 @@ export default function AgregarProducto({ open, setOpen }) {
                         as="h3"
                         className="text-lg font-medium leading-6 text-gray-900"
                       >
-                        Agregar producto
+                        Actualizar producto
                       </Dialog.Title>
                       <div className="mt-2">
                         <form>
@@ -132,9 +153,9 @@ export default function AgregarProducto({ open, setOpen }) {
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={subirProducto}
+                    onClick={actualizarProducto}
                   >
-                    Agregar
+                    Actualizar
                   </button>
                   <button
                     type="button"
